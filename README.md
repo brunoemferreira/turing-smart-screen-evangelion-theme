@@ -11,7 +11,7 @@
   <img src="https://img.shields.io/badge/Resolution-480x320%20%7C%20320x480-007ACC?style=for-the-badge" alt="Resolution" />
   <img src="https://img.shields.io/badge/Python-3.10%2B%20%7C%20Pillow-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
   <img src="https://img.shields.io/badge/PowerShell-.NET%20Reflection-5391FE?style=for-the-badge&logo=powershell&logoColor=white" alt="PowerShell" />
-  <img src="https://img.shields.io/badge/Version-v1.3.0-FFAA00?style=for-the-badge" alt="v1.3.0" />
+  <img src="https://img.shields.io/badge/Version-v1.3.1-FFAA00?style=for-the-badge" alt="v1.3.1" />
   <img src="https://img.shields.io/badge/License-MIT-brightgreen?style=for-the-badge" alt="MIT License" />
 </p>
 
@@ -158,6 +158,10 @@ Abaixo estão os links oficiais e recursos comunitários para download do aplica
 ---
 
 ## <img src="./assets/icons/code.svg" width="24" height="24" valign="middle" /> Histórico de Versões
+
+### [v1.3.1] - 2026-10-21
+- **Correção da Altura e Bounding Box do Drive C: (HDDLoad)**: Definição explícita de `W=14, H=18, interval=14` para fontes tamanho 24, corrigindo a renderização cortada dos dígitos de porcentagem do Drive C: no display físico.
+- **Padronização Global de FontConfig**: Configuração automática e rigorosa de `W`, `H`, `offsetX`, `offsetY` e `interval` para todos os tamanhos de fonte (18, 24, 30, 40) tanto no tema Horizontal quanto Vertical.
 
 ### [v1.3.0] - 2026-10-21
 - **Padronização Naming Evangelion**: Foco 100% exclusivo no tema Evangelion Unit-01 / NERV MAGI.

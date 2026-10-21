@@ -23,10 +23,34 @@ function Configure-Font($item, $fontName, $fontSize, $color) {
     $item.fontType.size = $fontSize
     $item.fontType.color = $color
     switch ($fontSize) {
-        18 { $item.fontType.offsetX = 5; $item.fontType.offsetY = 8; $item.fontType.interval = 10 }
-        24 { $item.fontType.offsetX = 7; $item.fontType.offsetY = 11; $item.fontType.interval = 12 }
-        30 { $item.fontType.offsetX = 8; $item.fontType.offsetY = 13; $item.fontType.interval = 16 }
-        40 { $item.fontType.offsetX = 11; $item.fontType.offsetY = 17; $item.fontType.interval = 22 }
+        18 { 
+            $item.fontType.W = 10
+            $item.fontType.H = 13
+            $item.fontType.offsetX = 5
+            $item.fontType.offsetY = 8
+            $item.fontType.interval = 11 
+        }
+        24 { 
+            $item.fontType.W = 14
+            $item.fontType.H = 18
+            $item.fontType.offsetX = 7
+            $item.fontType.offsetY = 11
+            $item.fontType.interval = 14 
+        }
+        30 { 
+            $item.fontType.W = 16
+            $item.fontType.H = 21
+            $item.fontType.offsetX = 8
+            $item.fontType.offsetY = 13
+            $item.fontType.interval = 18 
+        }
+        40 { 
+            $item.fontType.W = 22
+            $item.fontType.H = 28
+            $item.fontType.offsetX = 11
+            $item.fontType.offsetY = 17
+            $item.fontType.interval = 22 
+        }
     }
 }
 
