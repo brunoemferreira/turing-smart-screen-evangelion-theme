@@ -1,20 +1,16 @@
 """
-Evangelion Unit-01 Cyberpunk Theme Background Generator (v3)
-- Expanded vertical layout in CPU & GPU cards:
-  * Clean separation between LOAD, Progress Bar, TEMP, and CLOCK
-  * Temperature has 14px of breathing room below the bar (zero collision!)
-- Upgraded Time Card:
-  * Taller header bar with deep chamfered card (Y=3..25)
-  * Time digits sit comfortably at Y=7 with 4px padding below the top border (zero collision!)
+Evangelion Unit-01 (EVA-01) NERV MAGI Theme Background Generator
+Creates pixel-perfect 480x320 (Landscape) and 320x480 (Portrait)
+backgrounds for 3.5-inch Turing Smart Screen displays.
 """
 
 import os
 import math
 from PIL import Image, ImageDraw, ImageFont
 
-# Palette EVA-01 Cyberpunk
+# Palette EVA-01 Mecha
 BG_DARK = (10, 8, 16)           # Deep dark tech carbon
-BG_PANEL = (16, 12, 26)         # Dark purple-grey panel background
+BG_PANEL = (16, 12, 26)         # Dark purple mecha panel background
 BORDER_PURPLE = (140, 40, 220)  # Vivid EVA-01 mecha purple
 BORDER_GREEN = (0, 255, 102)    # Fluorescent Acid Neon Green
 ACCENT_GREEN = (57, 255, 20)    # Hyper-bright Lime
@@ -40,7 +36,7 @@ def get_font(size, bold=False):
     return ImageFont.load_default()
 
 def draw_hex_pattern(draw, width, height, step=22):
-    """Draw subtle dark hexagonal cyberpunk carbon grid in background"""
+    """Draw subtle dark hexagonal mecha carbon grid in background"""
     color = (20, 15, 32)
     r = step / math.sqrt(3)
     for y in range(0, height + int(step), int(step * 0.75)):
@@ -58,7 +54,7 @@ def draw_hex_pattern(draw, width, height, step=22):
             draw.polygon(points, outline=color)
 
 def draw_chamfer_box(draw, x, y, w, h, chamfer=6, fill=None, outline=None, width=1):
-    """Draws a cyberpunk chamfered-corner rectangle"""
+    """Draws a tactical chamfered-corner rectangle"""
     pts = [
         (x + chamfer, y),
         (x + w - chamfer, y),
@@ -96,7 +92,7 @@ def draw_hazard_stripes(draw, x, y, w, h, color1=(20, 16, 28), color2=ACCENT_AMB
             draw.polygon(pts, fill=color2)
 
 def draw_segmented_bar(draw, x, y, w, h, num_segments=16, lit_segments=10, lit_color=BORDER_GREEN, dim_color=(35, 25, 50)):
-    """Draws a permanent high-tech segmented HUD bar meter"""
+    """Draws a high-tech segmented HUD bar meter"""
     seg_w = (w - (num_segments - 1) * 2) / num_segments
     for i in range(num_segments):
         sx = int(x + i * (seg_w + 2))
@@ -109,7 +105,7 @@ def generate_landscape():
     im = Image.new("RGBA", (width, height), BG_DARK)
     draw = ImageDraw.Draw(im)
 
-    # 1. Subtle Cyberpunk Hex Grid
+    # 1. Subtle Mecha Hex Grid
     draw_hex_pattern(draw, width, height, step=22)
 
     # 2. Top Header Bar (Y=0 to 28)
@@ -186,20 +182,17 @@ def generate_landscape():
     draw.text((px + 12, py + 5), "// CPU TELEMETRY", font=f_label, fill=BORDER_GREEN)
 
     # Row 1: LOAD (Y=54)
-    # CpuLoad digits rendered at posX=68, posY=52 (Font 24)
     draw.text((px + 10, 54), "LOAD:", font=f_label, fill=TEXT_WHITE)
     draw.text((px + 126, 54), "%", font=f_label, fill=BORDER_GREEN)
 
     # Row 2: SEGMENTED BAR (Y=74..80)
     draw_segmented_bar(draw, px + 10, 74, pw - 20, 6, num_segments=16, lit_segments=10, lit_color=BORDER_GREEN)
 
-    # Row 3: TEMP (Y=95) -> 15px gap below bar! Zero collision!
-    # CpuTemp digits rendered at posX=68, posY=93 (Font 18)
+    # Row 3: TEMP (Y=95) -> 15px gap below bar!
     draw.text((px + 10, 95), "TEMP:", font=f_label, fill=TEXT_WHITE)
     draw.text((px + 122, 95), "°C", font=f_label, fill=ACCENT_AMBER)
 
     # Row 4: CLOCK (Y=119) -> 24px gap below Temp!
-    # CpuFreq digits rendered at posX=68, posY=117 (Font 18)
     draw.text((px + 10, 119), "CLOCK:", font=f_label, fill=TEXT_WHITE)
     draw.text((px + 120, 119), "GHz", font=f_label, fill=BORDER_GREEN)
 
@@ -214,11 +207,11 @@ def generate_landscape():
     draw.rectangle([nx + 8, ny + 4, nx + nw - 8, ny + 18], fill=(32, 16, 52))
     draw.text((nx + 12, ny + 5), "// NETWORK UPLINK", font=f_label, fill=BORDER_GREEN)
 
-    # InternetDown: Digit at posX=56, posY=195
+    # InternetDown: Digit at posX=56, posY=194
     draw.text((nx + 10, ny + 24), "DL [v]:", font=f_label, fill=BORDER_GREEN)
     draw.text((nx + 116, ny + 25), "MB/s", font=f_unit, fill=TEXT_MUTED)
 
-    # InternetUp: Digit at posX=56, posY=223
+    # InternetUp: Digit at posX=56, posY=222
     draw.text((nx + 10, ny + 52), "UL [^]:", font=f_label, fill=TEXT_PURPLE)
     draw.text((nx + 116, ny + 53), "MB/s", font=f_unit, fill=TEXT_MUTED)
 
@@ -226,7 +219,6 @@ def generate_landscape():
     draw.line([(nx + 8, ny + 80), (nx + nw - 8, ny + 80)], fill=BORDER_PURPLE, width=1)
     draw.text((nx + 10, ny + 86), "INTERFACE: ETHERNET", font=f_tiny, fill=TEXT_MUTED)
     draw.text((nx + 10, ny + 100), "STATUS: ONLINE 1Gbps", font=f_tiny, fill=BORDER_GREEN)
-    # Signal bars
     for bi in range(6):
         bh = 4 + bi * 3
         draw.rectangle([nx + 10 + bi * 8, ny + 130 - bh, nx + 15 + bi * 8, ny + 130], fill=BORDER_GREEN)
@@ -239,20 +231,17 @@ def generate_landscape():
     draw.text((gx + 12, gy + 5), "// GPU TELEMETRY", font=f_label, fill=BORDER_GREEN)
 
     # Row 1: LOAD (Y=54)
-    # GpuLoad digits rendered at posX=388, posY=52 (Font 24)
     draw.text((gx + 10, 54), "LOAD:", font=f_label, fill=TEXT_WHITE)
     draw.text((gx + 126, 54), "%", font=f_label, fill=BORDER_GREEN)
 
     # Row 2: SEGMENTED BAR (Y=74..80)
     draw_segmented_bar(draw, gx + 10, 74, gw - 20, 6, num_segments=16, lit_segments=11, lit_color=BORDER_GREEN)
 
-    # Row 3: TEMP (Y=95) -> 15px gap below bar! Zero collision!
-    # GpuTemp digits rendered at posX=388, posY=93 (Font 18)
+    # Row 3: TEMP (Y=95) -> 15px gap below bar!
     draw.text((gx + 10, 95), "TEMP:", font=f_label, fill=TEXT_WHITE)
     draw.text((gx + 122, 95), "°C", font=f_label, fill=ACCENT_AMBER)
 
     # Row 4: VRAM (Y=119) -> 24px gap below Temp!
-    # GpuRam digits rendered at posX=384, posY=117 (Font 18, outputs '8136MB')
     draw.text((gx + 10, 119), "VRAM:", font=f_label, fill=TEXT_WHITE)
 
     # Row 5: Tactical Status Line (Y=143)
@@ -267,16 +256,14 @@ def generate_landscape():
     draw.text((rx + 12, ry + 5), "// MEMORY & STORAGE", font=f_label, fill=BORDER_GREEN)
 
     # Section 1: RAM (Row 1 at Y=195, Bar at Y=217)
-    # RamLoad digits rendered at posX=392, posY=193 (Font 24)
     draw.text((rx + 8, 195), "RAM:", font=f_label, fill=TEXT_WHITE)
     draw.text((rx + 124, 195), "%", font=f_label, fill=BORDER_GREEN)
     draw_segmented_bar(draw, rx + 8, 217, rw - 16, 6, num_segments=16, lit_segments=6, lit_color=BORDER_GREEN)
 
-    # Subtle divider line between RAM and Drive C:
+    # Divider line between RAM and Drive C:
     draw.line([(rx + 8, 231), (rx + rw - 8, 231)], fill=(40, 24, 58), width=1)
 
     # Section 2: DRIVE C: (Row 2 at Y=243, Bar at Y=267)
-    # HDDLoad digits rendered at posX=392, posY=241 (Font 24)
     draw.text((rx + 8, 243), "DRIVE C:", font=f_label, fill=BORDER_GREEN)
     draw.text((rx + 124, 243), "%", font=f_label, fill=ACCENT_AMBER)
     draw_segmented_bar(draw, rx + 8, 267, rw - 16, 6, num_segments=16, lit_segments=9, lit_color=ACCENT_AMBER)
@@ -285,7 +272,7 @@ def generate_landscape():
     draw.line([(rx + 8, 285), (rx + rw - 8, 285)], fill=(40, 24, 58), width=1)
     draw.text((rx + 10, 289), "SYSTEM NVMe STORAGE", font=f_tiny, fill=TEXT_MUTED)
 
-    out_file = "e:/Dev/03-laboratorios/tss/eva_cyberpunk_landscape.png"
+    out_file = "e:/Dev/03-laboratorios/tss/eva_01_landscape.png"
     im.save(out_file, "PNG")
     print(f"Landscape background saved to {out_file} ({width}x{height})")
     return out_file
@@ -362,7 +349,7 @@ def generate_portrait():
     draw.text((gx + 80, gy + 23), "%", font=f_unit, fill=BORDER_GREEN)
 
     draw.text((gx + 110, gy + 22), "TEMP:", font=f_label, fill=TEXT_WHITE)
-    draw.text((gx + 178, gy + 23), "°C", font=f_unit, fill=ACCENT_AMBER)
+    draw.text((gx + 178, cy + 23), "°C", font=f_unit, fill=ACCENT_AMBER)
 
     draw.text((gx + 208, gy + 22), "VRAM:", font=f_label, fill=TEXT_WHITE)
 
@@ -397,7 +384,7 @@ def generate_portrait():
     draw.line([(nx + 8, ny + 48), (nx + nw - 8, ny + 48)], fill=BORDER_PURPLE, width=1)
     draw.text((nx + 12, ny + 54), "TIME:", font=f_tiny, fill=TEXT_MUTED)
 
-    out_file = "e:/Dev/03-laboratorios/tss/eva_cyberpunk_portrait.png"
+    out_file = "e:/Dev/03-laboratorios/tss/eva_01_portrait.png"
     im.save(out_file, "PNG")
     print(f"Portrait background saved to {out_file} ({width}x{height})")
     return out_file

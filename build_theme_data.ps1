@@ -30,14 +30,14 @@ function Configure-Font($item, $fontName, $fontSize, $color) {
     }
 }
 
-# Evangelion Colors
+# Evangelion Unit-01 Colors
 $colGreen = [System.Drawing.Color]::FromArgb(255, 57, 255, 20)      # Neon Lime (#39FF14)
 $colAmber = [System.Drawing.Color]::FromArgb(255, 255, 170, 0)     # Neon Amber (#FFAA00)
 $colPurple = [System.Drawing.Color]::FromArgb(255, 200, 120, 255)  # Neon Purple (#C878FF)
 $colWhite = [System.Drawing.Color]::FromArgb(255, 255, 255, 255)   # White
 
 Write-Host "=========================================" -ForegroundColor Cyan
-Write-Host "COMPILING REDISTRIBUTED EVA-01 THEMES" -ForegroundColor Cyan
+Write-Host "COMPILING EVANGELION EVA-01 THEMES" -ForegroundColor Cyan
 Write-Host "=========================================" -ForegroundColor Cyan
 
 # ---------------------------------------------------------
@@ -49,7 +49,7 @@ $stream = [System.IO.File]::OpenRead($msiPath)
 $landTheme = $formatter.Deserialize($stream)
 $stream.Close()
 
-$landTheme.name = "A EVA 01 Cyberpunk Land"
+$landTheme.name = "A EVA 01 Evangelion Land"
 $landTheme.isLanscape = $true
 $landTheme.needRereshArch = $false
 
@@ -60,7 +60,7 @@ $landTheme.enbaleOsdWithFontBack = $false
 $landTheme.useOsdWithFontBack = $false
 
 # Load clean landscape background
-$landImgPath = Join-Path $ProjectDir "eva_cyberpunk_landscape.png"
+$landImgPath = Join-Path $ProjectDir "eva_01_landscape.png"
 $landBmp = [System.Drawing.Bitmap]::FromFile($landImgPath)
 $landTheme.backImg = New-Object System.Drawing.Bitmap($landBmp)
 $landBmp.Dispose()
@@ -79,13 +79,12 @@ foreach ($g in $landTheme.groupList) {
     foreach ($item in $g.itemList) {
         $item.enabled = $false
         
-        # CPU Items (Generous spacing: Load Y=52, Temp Y=93, Freq Y=117)
+        # CPU Items (Load Y=52, Temp Y=93, Freq Y=117)
         if ($item.itemName -eq "CpuLoad") {
             $item.posX = 68; $item.posY = 52; $item.enabled = $true
             Configure-Font $item "24" 24 $colGreen
         }
         elseif ($item.itemName -eq "CpuTemp") {
-            # 13px below bar (bar ends at Y=80). Zero collision!
             $item.posX = 68; $item.posY = 93; $item.enabled = $true
             Configure-Font $item "18" 18 $colAmber
         }
@@ -99,7 +98,6 @@ foreach ($g in $landTheme.groupList) {
             Configure-Font $item "24" 24 $colGreen
         }
         elseif ($item.itemName -eq "GpuTemp") {
-            # 13px below bar (bar ends at Y=80). Zero collision!
             $item.posX = 388; $item.posY = 93; $item.enabled = $true
             Configure-Font $item "18" 18 $colAmber
         }
@@ -126,7 +124,7 @@ foreach ($g in $landTheme.groupList) {
             $item.posX = 56; $item.posY = 222; $item.enabled = $true
             Configure-Font $item "18" 18 $colPurple
         }
-        # Time Item (Y=7, card border is at Y=3, leaves 4px padding so no overlap with top line!)
+        # Time Item (Y=7, card border at Y=3, leaves 4px padding so no overlap)
         elseif ($item.itemName -eq "Time") {
             $item.posX = 396; $item.posY = 7; $item.enabled = $true
             Configure-Font $item "18" 18 $colGreen
@@ -135,8 +133,8 @@ foreach ($g in $landTheme.groupList) {
 }
 
 # Save Landscape theme to local and UsbMonitor config
-$landOutLocal = Join-Path $ProjectDir "A EVA 01 Cyberpunk Land.data"
-$landOutTarget = Join-Path $UsbMonitorDir "config\A EVA 01 Cyberpunk Land.data"
+$landOutLocal = Join-Path $ProjectDir "A EVA 01 Evangelion Land.data"
+$landOutTarget = Join-Path $UsbMonitorDir "config\A EVA 01 Evangelion Land.data"
 
 $streamOut = [System.IO.File]::Create($landOutLocal)
 $formatter.Serialize($streamOut, $landTheme)
@@ -153,7 +151,7 @@ $streamPort = [System.IO.File]::OpenRead($cyberPath)
 $portTheme = $formatter.Deserialize($streamPort)
 $streamPort.Close()
 
-$portTheme.name = "A EVA 01 Cyberpunk Port"
+$portTheme.name = "A EVA 01 Evangelion Port"
 $portTheme.isLanscape = $false
 $portTheme.needRereshArch = $false
 
@@ -164,7 +162,7 @@ $portTheme.enbaleOsdWithFontBack = $false
 $portTheme.useOsdWithFontBack = $false
 
 # Load clean portrait background
-$portImgPath = Join-Path $ProjectDir "eva_cyberpunk_portrait.png"
+$portImgPath = Join-Path $ProjectDir "eva_01_portrait.png"
 $portBmp = [System.Drawing.Bitmap]::FromFile($portImgPath)
 $portTheme.backImg = New-Object System.Drawing.Bitmap($portBmp)
 $portBmp.Dispose()
@@ -237,8 +235,8 @@ foreach ($g in $portTheme.groupList) {
 }
 
 # Save Portrait theme
-$portOutLocal = Join-Path $ProjectDir "A EVA 01 Cyberpunk Port.data"
-$portOutTarget = Join-Path $UsbMonitorDir "config\A EVA 01 Cyberpunk Port.data"
+$portOutLocal = Join-Path $ProjectDir "A EVA 01 Evangelion Port.data"
+$portOutTarget = Join-Path $UsbMonitorDir "config\A EVA 01 Evangelion Port.data"
 
 $streamPortOut = [System.IO.File]::Create($portOutLocal)
 $formatter.Serialize($streamPortOut, $portTheme)
@@ -247,7 +245,33 @@ Copy-Item $portOutLocal $portOutTarget -Force
 Write-Host " -> Saved Portrait Theme: $portOutTarget" -ForegroundColor Green
 
 # Copy background PNGs to UsbMonitor 3.5 folder
-Copy-Item (Join-Path $ProjectDir "eva_cyberpunk_landscape.png") (Join-Path $UsbMonitorDir "3.5\eva_cyberpunk_landscape.png") -Force
-Copy-Item (Join-Path $ProjectDir "eva_cyberpunk_portrait.png") (Join-Path $UsbMonitorDir "3.5\eva_cyberpunk_portrait.png") -Force
+Copy-Item (Join-Path $ProjectDir "eva_01_landscape.png") (Join-Path $UsbMonitorDir "3.5\eva_01_landscape.png") -Force
+Copy-Item (Join-Path $ProjectDir "eva_01_portrait.png") (Join-Path $UsbMonitorDir "3.5\eva_01_portrait.png") -Force
 
-Write-Host "`nSUCCESS! Themes updated with zero overlap and redistributed spacing." -ForegroundColor Cyan
+# Clean up old cyberpunk files in UsbMonitor config and 3.5 folders
+Remove-Item (Join-Path $UsbMonitorDir "config\*Cyberpunk*.data") -Force -ErrorAction SilentlyContinue
+Remove-Item (Join-Path $UsbMonitorDir "3.5\*cyberpunk*.png") -Force -ErrorAction SilentlyContinue
+
+# Update AppConfig.data to point to A EVA 01 Evangelion Land.data
+$cfgPath = Join-Path $UsbMonitorDir "config\AppConfig.data"
+if (Test-Path $cfgPath) {
+    $files = Get-ChildItem (Join-Path $UsbMonitorDir "config\*.data") | Where-Object { $_.Name -ne "AppConfig.data" } | Sort-Object Name
+    $idx = 0
+    for ($i = 0; $i -lt $files.Count; $i++) {
+        if ($files[$i].Name -eq "A EVA 01 Evangelion Land.data") {
+            $idx = $i
+            break
+        }
+    }
+    $streamCfg = [System.IO.File]::OpenRead($cfgPath)
+    $cfg = $formatter.Deserialize($streamCfg)
+    $streamCfg.Close()
+    $cfg.themeIndex = $idx
+    $cfg.rotation = 3
+    $streamCfgOut = [System.IO.File]::Create($cfgPath)
+    $formatter.Serialize($streamCfgOut, $cfg)
+    $streamCfgOut.Close()
+    Write-Host " -> Updated AppConfig.data (themeIndex: $idx)" -ForegroundColor Green
+}
+
+Write-Host "`nSUCCESS! Evangelion themes compiled and deployed." -ForegroundColor Cyan
