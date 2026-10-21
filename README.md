@@ -6,12 +6,13 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Evangelion-EVA--01-8C28DC?style=for-the-badge&logoColor=white" alt="Evangelion EVA-01" />
-  <img src="https://img.shields.io/badge/Display-Turing%203.5%22-00FF66?style=for-the-badge&logoColor=black" alt="Turing 3.5" />
+  <img src="https://img.shields.io/badge/Display-Turing%20Smart%20Screen%203.5%22-00FF66?style=for-the-badge&logoColor=black" alt="Turing 3.5" />
+  <img src="https://img.shields.io/badge/App-UsbMonitor.exe-107C41?style=for-the-badge&logo=windows&logoColor=white" alt="UsbMonitor" />
   <img src="https://img.shields.io/badge/Resolution-480x320%20%7C%20320x480-007ACC?style=for-the-badge" alt="Resolution" />
-  <img src="https://img.shields.io/badge/Python-3.13%20%7C%20Pillow-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
+  <img src="https://img.shields.io/badge/Python-3.10%2B%20%7C%20Pillow-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
   <img src="https://img.shields.io/badge/PowerShell-.NET%20Reflection-5391FE?style=for-the-badge&logo=powershell&logoColor=white" alt="PowerShell" />
-  <img src="https://img.shields.io/badge/Version-v1.3.0-orange?style=for-the-badge" alt="v1.3.0" />
-  <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="MIT License" />
+  <img src="https://img.shields.io/badge/Version-v1.3.0-FFAA00?style=for-the-badge" alt="v1.3.0" />
+  <img src="https://img.shields.io/badge/License-MIT-brightgreen?style=for-the-badge" alt="MIT License" />
 </p>
 
 ---
@@ -145,17 +146,21 @@ Se você desejar copiar manualmente para outra máquina ou diretório:
 
 ## <img src="./assets/icons/connect.svg" width="24" height="24" valign="middle" /> Links Úteis e Downloads
 
-- **Site Oficial Turzx / Turing Smart Screen:** [https://www.turzx.com/](https://www.turzx.com/)  
-  *(Download do software oficial `UsbMonitor.exe`, firmwares e drivers para telas de 3.5 polegadas).*
-- **Repositório do Driver e Utilitários:** [Turzx Software Center](https://www.turzx.com/2021/11/02/download/)
-- **Ecossistema Aberto Turing Smart Screen Python:** [mathoudebine/turing-smart-screen-python](https://github.com/mathoudebine/turing-smart-screen-python)
+Abaixo estão os links oficiais e recursos comunitários para download do aplicativo de gerenciamento do **Turing Smart Screen 3.5"** (`UsbMonitor.exe`), drivers e firmwares:
+
+| Recurso | Descrição | Link de Acesso |
+| :--- | :--- | :--- |
+| **Download do App Turing 3.5" (Direto)** | Página de download direto dos pacotes oficiais para display 3.5" (`35inchENG.rar` / `UsbMonitor.exe`) | [Download Direto Turing 3.5 App](https://www.turzx.com/2023/03/02/%E7%9B%B4%E9%93%BE%E4%B8%8B%E8%BD%BDdirectdownload/) |
+| **Portal Oficial do Fabricante (Turzx)** | Site oficial da Turzx com documentações, lançamentos e tutoriais | [https://www.turzx.com/](https://www.turzx.com/) |
+| **Central de Drivers & Utilitários Turzx** | Repositório geral de drivers, temas e atualizações de firmware | [Turzx Software Center](https://www.turzx.com/2021/11/02/download/) |
+| **Turing Smart Screen Python (Open Source)** | Driver e biblioteca de código aberto mantida pela comunidade para telas Turing | [GitHub - mathoudebine/turing-smart-screen-python](https://github.com/mathoudebine/turing-smart-screen-python) |
 
 ---
 
 ## <img src="./assets/icons/code.svg" width="24" height="24" valign="middle" /> Histórico de Versões
 
 ### [v1.3.0] - 2026-10-21
-- **Padronização Naming Evangelion**: Remoção de qualquer menção a Cyberpunk; foco 100% no tema Evangelion Unit-01 / NERV MAGI.
+- **Padronização Naming Evangelion**: Foco 100% exclusivo no tema Evangelion Unit-01 / NERV MAGI.
 - **Novos Ícones no README**: Incorporação da coleção de ícones SVG estilizados e badges do ecossistema.
 - **Guia de Compilação e Links**: Documentação técnica de build procedural via Python/PowerShell e links para download do software oficial.
 

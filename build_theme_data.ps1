@@ -146,8 +146,14 @@ Write-Host " -> Saved Landscape Theme: $landOutTarget" -ForegroundColor Green
 # 2. PORTRAIT THEME (320x480)
 # ---------------------------------------------------------
 Write-Host "`n[2/2] Building Portrait Theme (320x480)..." -ForegroundColor Yellow
-$cyberPath = Join-Path $UsbMonitorDir "config\Cyberpunk2077.data"
-$streamPort = [System.IO.File]::OpenRead($cyberPath)
+$portTemplatePath = Join-Path $UsbMonitorDir "config\3.5inchTheme1.data"
+if (-not (Test-Path $portTemplatePath)) {
+    $portTemplatePath = Join-Path $UsbMonitorDir "config\theme 03.data"
+}
+if (-not (Test-Path $portTemplatePath)) {
+    $portTemplatePath = Join-Path $ProjectDir "A EVA 01 Evangelion Port.data"
+}
+$streamPort = [System.IO.File]::OpenRead($portTemplatePath)
 $portTheme = $formatter.Deserialize($streamPort)
 $streamPort.Close()
 
@@ -247,10 +253,6 @@ Write-Host " -> Saved Portrait Theme: $portOutTarget" -ForegroundColor Green
 # Copy background PNGs to UsbMonitor 3.5 folder
 Copy-Item (Join-Path $ProjectDir "eva_01_landscape.png") (Join-Path $UsbMonitorDir "3.5\eva_01_landscape.png") -Force
 Copy-Item (Join-Path $ProjectDir "eva_01_portrait.png") (Join-Path $UsbMonitorDir "3.5\eva_01_portrait.png") -Force
-
-# Clean up old cyberpunk files in UsbMonitor config and 3.5 folders
-Remove-Item (Join-Path $UsbMonitorDir "config\*Cyberpunk*.data") -Force -ErrorAction SilentlyContinue
-Remove-Item (Join-Path $UsbMonitorDir "3.5\*cyberpunk*.png") -Force -ErrorAction SilentlyContinue
 
 # Update AppConfig.data to point to A EVA 01 Evangelion Land.data
 $cfgPath = Join-Path $UsbMonitorDir "config\AppConfig.data"
