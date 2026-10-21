@@ -1,98 +1,178 @@
-# 🤖 Evangelion Unit-01 Cyberpunk HUD — Turing Smart Screen 3.5"
+# <p align="center"><img src="./assets/icons/bot.svg" width="42" height="42" valign="middle" /> Evangelion Unit-01 (EVA-01) HUD <img src="./assets/icons/activity.svg" width="42" height="42" valign="middle" /></p>
 
-Tema funcional de alta performance e estética mecha cyberpunk inspirado no **EVA-01 de Neon Genesis Evangelion**, desenvolvido especificamente para displays secundários USB **Turing Smart Screen de 3.5 polegadas** (resolução nativa de **480×320** em modo horizontal e **320×480** em modo vertical) gerenciados pelo software `UsbMonitor.exe`.
+<p align="center">
+  <strong>Tema de telemetria mecha de alta performance inspirado no Evangelion Unit-01 para telas Turing Smart Screen de 3.5 polegadas.</strong>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Evangelion-EVA--01-8C28DC?style=for-the-badge&logoColor=white" alt="Evangelion EVA-01" />
+  <img src="https://img.shields.io/badge/Display-Turing%203.5%22-00FF66?style=for-the-badge&logoColor=black" alt="Turing 3.5" />
+  <img src="https://img.shields.io/badge/Resolution-480x320%20%7C%20320x480-007ACC?style=for-the-badge" alt="Resolution" />
+  <img src="https://img.shields.io/badge/Python-3.13%20%7C%20Pillow-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
+  <img src="https://img.shields.io/badge/PowerShell-.NET%20Reflection-5391FE?style=for-the-badge&logo=powershell&logoColor=white" alt="PowerShell" />
+  <img src="https://img.shields.io/badge/Version-v1.3.0-orange?style=for-the-badge" alt="v1.3.0" />
+  <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="MIT License" />
+</p>
 
 ---
 
-## 📸 Imagens das Telas (Pré-visualizações)
+## <img src="./assets/icons/explore.svg" width="24" height="24" valign="middle" /> Sumário
+
+- [Visão Geral](#-visão-geral)
+- [Demonstração Visual](#-demonstração-visual)
+- [Mapeamento de Telemetria](#-mapeamento-de-telemetria)
+- [Estrutura do Repositório](#-estrutura-do-repositório)
+- [Como Compilar os Arquivos](#-como-compilar-os-arquivos)
+- [Como Instalar e Ativar no Display](#-como-instalar-e-ativar-no-display)
+- [Links Úteis e Downloads](#-links-úteis-e-downloads)
+- [Histórico de Versões](#-histórico-de-versões)
+- [Licença](#-licença)
+
+---
+
+## <img src="./assets/icons/explore.svg" width="24" height="24" valign="middle" /> Visão Geral
+
+Este projeto disponibiliza um tema de monitoramento de hardware em tempo real para o display secundário USB **Turing Smart Screen de 3.5 polegadas** (resoluções nativas de **480×320** em modo horizontal e **320×480** em modo vertical).
+
+O design é baseado na estética tática dos cockpits e da interface **MAGI System da NERV**, utilizando a paleta oficial do **Evangelion Unit-01 (EVA-01)**:
+- **Roxo Mecha Profundo (`#8C28DC` / `#2E0854`)**: Molduras chanfradas, trilhos e cantoneiras estruturais.
+- **Verde Neon Fluorescente (`#00FF66` / `#39FF14`)**: Destaque das taxas de clock, cargas de uso, download e status de sincronização (`SYNC: 100%`).
+- **Laranja/Âmbar NERV Alert (`#FFAA00`)**: Temperaturas críticas, aviso de emergência e uso do Drive C:.
+- **Textura Carbon Hex**: Fundo escuro fosco de alto contraste que elimina reflexos e destaca o holograma aramado central do EVA-01.
+
+---
+
+## <img src="./assets/icons/target.svg" width="24" height="24" valign="middle" /> Demonstração Visual
 
 ### Modo Horizontal (Landscape — 480 × 320 px)
-> *Orientação recomendada para suporte de mesa padrão.*
+> *Ideal para suporte de mesa padrão horizontal.*
 
-![EVA-01 Cyberpunk Landscape Preview](./preview_landscape.png)
+![EVA-01 Landscape Preview](./preview_landscape.png)
 
 ### Modo Vertical (Portrait — 320 × 480 px)
-> *Orientação para displays verticais.*
+> *Ideal para gabinetes ou suportes verticais.*
 
-![EVA-01 Cyberpunk Portrait Preview](./preview_portrait.png)
+![EVA-01 Portrait Preview](./preview_portrait.png)
 
 ---
 
-## ⚙️ Métricas de Telemetria Mapeadas em Tempo Real
+## <img src="./assets/icons/activity.svg" width="24" height="24" valign="middle" /> Mapeamento de Telemetria
+
+Todas as métricas são atualizadas em tempo real pelo software sem sobreposição de textos ou barras:
 
 | Módulo | Métrica | Identificador no Software | Formato & Cor |
 | :--- | :--- | :--- | :--- |
 | **CPU** | Carga de Uso (%) | `CpuLoad` | Dígitos em Verde Neon (`#39FF14`) + Barra Dinâmica LED HUD |
-| **CPU** | Temperatura (°C) | `CpuTemp` | Dígitos em Âmbar NERV Alert (`#FFAA00`) |
+| **CPU** | Temperatura (°C) | `CpuTemp` | Dígitos em Âmbar NERV Alert (`#FFAA00`) com 13px de respiro |
 | **CPU** | Frequência de Clock (GHz) | `CpuFreq` | Dígitos em Verde Neon |
 | **GPU** | Carga de Uso (%) | `GpuLoad` | Dígitos em Verde Neon + Barra Dinâmica LED HUD |
-| **GPU** | Temperatura (°C) | `GpuTemp` | Dígitos em Âmbar NERV Alert |
+| **GPU** | Temperatura (°C) | `GpuTemp` | Dígitos em Âmbar NERV Alert com 13px de respiro |
 | **GPU** | Memória VRAM (MB) | `GpuRam` | Dígitos em Verde Neon com sufixo nativo |
-| **RAM** | Uso da Memória (%) | `RamLoad` | Dígitos em Verde Neon + Barra Dinâmica LED HUD |
-| **Drive C:** | Uso do Armazenamento (%) | `HDDLoad` | Dígitos em Âmbar NERV Alert + Barra Dinâmica LED HUD |
+| **RAM** | Uso da Memória (%) | `RamLoad` | Dígitos em Verde Neon (coluna `X = 392`) + Barra Dinâmica |
+| **Drive C:** | Uso do Armazenamento (%) | `HDDLoad` | Dígitos em Âmbar NERV (coluna `X = 392`) + Barra Dinâmica |
 | **Rede** | Taxa de Download (MB/s) | `InternetDown` | Dígitos em Verde Neon com indicador `DL [v]` |
 | **Rede** | Taxa de Upload (MB/s) | `InternetUp` | Dígitos em Roxo Elétrico (`#C878FF`) com indicador `UL [^]` |
-| **Relógio** | Horário Atual | `Time` | Sincronizado no card superior direito sem sobreposição |
+| **Relógio** | Horário Atual | `Time` | Sincronizado no topo direito com 4px de margem interna |
 
 ---
 
-## 🎨 Paleta de Cores & Design Mecha
-
-- **Verde Neon Fluorescente (`#00FF66` / `#39FF14`)**: Destaque para taxas de clock, carga de uso, download e status nominal do EVA-01.
-- **Roxo Mecha Profundo (`#8C28DC` / `#2E0854`)**: Molduras táticas chanfradas no estilo cockpit, cantoneiras e trilhos de medição.
-- **Laranja/Âmbar NERV Alert (`#FFAA00`)**: Temperaturas críticas, advertências de emergência e capacidade do Drive C:.
-- **Textura Carbon Hex Cyberpunk (`#0A0810`)**: Fundo escuro fosco de alto contraste que realça os displays sob luz ambiente e destaca o holograma central aramado do EVA-01.
-
----
-
-## 📁 Estrutura do Repositório
+## <img src="./assets/icons/architecture.svg" width="24" height="24" valign="middle" /> Estrutura do Repositório
 
 ```text
 tss/
 ├── assets/
-│   ├── eva_center_crop.png             # Holograma EVA-01 para orientação horizontal
-│   └── eva_portrait_crop.png           # Holograma EVA-01 para orientação vertical
+│   ├── icons/                          # Ícones SVG do projeto
+│   ├── eva_center_crop.png             # Holograma do EVA-01 (Horizontal)
+│   └── eva_portrait_crop.png           # Holograma do EVA-01 (Vertical)
 │
-├── build_theme_images.py               # Gerador procedural de backgrounds HUD via Pillow
-├── build_theme_data.ps1                # Compilador binário de temas (.data) via .NET Reflection
-├── eva_cyberpunk_landscape.png         # Imagem de fundo 480x320 gerada
-├── eva_cyberpunk_portrait.png          # Imagem de fundo 320x480 gerada
-├── preview_landscape.png               # Imagem demonstrativa de telemetria horizontal
-├── preview_portrait.png                # Imagem demonstrativa de telemetria vertical
-├── A EVA 01 Cyberpunk Land.data        # Arquivo de tema pronto para o UsbMonitor (Horizontal)
-├── A EVA 01 Cyberpunk Port.data        # Arquivo de tema pronto para o UsbMonitor (Vertical)
-└── README.md                           # Documentação oficial do projeto
+├── build_theme_images.py               # Gerador procedural de backgrounds HUD (Pillow)
+├── build_theme_data.ps1                # Compilador binário de temas (.data via .NET Reflection)
+├── eva_01_landscape.png                # Fundo gerado 480x320
+├── eva_01_portrait.png                 # Fundo gerado 320x480
+├── preview_landscape.png               # Imagem de demonstração horizontal
+├── preview_portrait.png                # Imagem de demonstração vertical
+├── A EVA 01 Evangelion Land.data       # Pacote binário do tema horizontal
+├── A EVA 01 Evangelion Port.data       # Pacote binário do tema vertical
+├── .gitignore                          # Regras de exclusão do Git
+└── README.md                           # Documentação oficial
 ```
 
 ---
 
-## 🚀 Como Instalar e Ativar
+## <img src="./assets/icons/tools.svg" width="24" height="24" valign="middle" /> Como Compilar os Arquivos
 
-### 1. Local dos Arquivos
-Os temas e fundos devem estar nas respectivas pastas do seu software (ex: `C:\Users\bruno\Downloads\35inchENG\35inchENG`):
-- Temas `.data`: pasta `config\`
-- Imagens de fundo `.png`: pasta `3.5\`
+O pipeline de compilação é composto por duas etapas: geração das imagens de alta definição e serialização binária compatível com a arquitetura `.NET` do Turing Smart Screen.
 
-### 2. Ativação no Software
-1. Abra a janela principal do **UsbMonitor**.
-2. No menu suspenso de temas (**Theme**), selecione:
-   - **`A EVA 01 Cyberpunk Land`** (modo horizontal)
-   - ou **`A EVA 01 Cyberpunk Port`** (modo vertical)
-3. Clique em **Run**. O visor de 3.5 polegadas atualizará na hora com a telemetria do Evangelion.
+### Pré-requisitos:
+- **Python 3.10+** com biblioteca Pillow:
+  ```bash
+  pip install pillow
+  ```
+- **PowerShell 5.1 ou 7+** (com permissão de execução de scripts).
+
+### Etapa 1: Gerar as Imagens de Fundo (PNG)
+Execute o script Python para desenhar os painéis, grades hexagonais, molduras mecha e compor os hologramas:
+```bash
+python build_theme_images.py
+```
+*Saída:* Gera `eva_01_landscape.png` (480x320) e `eva_01_portrait.png` (320x480).
+
+### Etapa 2: Compilar os Temas Binários (`.data`)
+Execute o script PowerShell para serializar os temas com `BinaryFormatter`, injetar as fontes, cores neon, coordenadas absolutas e camadas OSD transparentes:
+```powershell
+powershell -ExecutionPolicy Bypass -File build_theme_data.ps1
+```
+*Saída:* Compila `A EVA 01 Evangelion Land.data` e `A EVA 01 Evangelion Port.data` e os transfere automaticamente para a pasta do seu software.
 
 ---
 
-## 🔖 Versionamento (Changelog)
+## <img src="./assets/icons/backend.svg" width="24" height="24" valign="middle" /> Como Instalar e Ativar no Display
+
+Se você desejar copiar manualmente para outra máquina ou diretório:
+
+1. **Copie os arquivos de tema para a pasta `config\`:**
+   - Copie `A EVA 01 Evangelion Land.data` e `A EVA 01 Evangelion Port.data` para `C:\...\35inchENG\config\`
+2. **Copie as imagens de fundo para a pasta `3.5\`:**
+   - Copie `eva_01_landscape.png` e `eva_01_portrait.png` para `C:\...\35inchENG\3.5\`
+3. **Ative na interface do UsbMonitor:**
+   - Abra o **UsbMonitor.exe**.
+   - No menu suspenso **Theme**, selecione:
+     - **`A EVA 01 Evangelion Land`** (para exibição horizontal)
+     - ou **`A EVA 01 Evangelion Port`** (para exibição vertical)
+   - Clique no botão **Run**. O visor atualizará imediatamente.
+
+---
+
+## <img src="./assets/icons/connect.svg" width="24" height="24" valign="middle" /> Links Úteis e Downloads
+
+- **Site Oficial Turzx / Turing Smart Screen:** [https://www.turzx.com/](https://www.turzx.com/)  
+  *(Download do software oficial `UsbMonitor.exe`, firmwares e drivers para telas de 3.5 polegadas).*
+- **Repositório do Driver e Utilitários:** [Turzx Software Center](https://www.turzx.com/2021/11/02/download/)
+- **Ecossistema Aberto Turing Smart Screen Python:** [mathoudebine/turing-smart-screen-python](https://github.com/mathoudebine/turing-smart-screen-python)
+
+---
+
+## <img src="./assets/icons/code.svg" width="24" height="24" valign="middle" /> Histórico de Versões
+
+### [v1.3.0] - 2026-10-21
+- **Padronização Naming Evangelion**: Remoção de qualquer menção a Cyberpunk; foco 100% no tema Evangelion Unit-01 / NERV MAGI.
+- **Novos Ícones no README**: Incorporação da coleção de ícones SVG estilizados e badges do ecossistema.
+- **Guia de Compilação e Links**: Documentação técnica de build procedural via Python/PowerShell e links para download do software oficial.
 
 ### [v1.2.0] - 2026-10-21
-- **Card RAM & Drive C:**: Redistribuição vertical dos elementos, novo alinhamento horizontal em `X = 392` e linha divisória entre RAM e Drive C:, eliminando sobreposição com o texto "DRIVE C:".
-- **Card de Horário**: Ampliação do card de tempo (`Y = 3..25`) e inserção com margem interna de 4px, resolvendo o corte na linha superior da borda.
-- **Cards CPU e GPU**: Temperaturas posicionadas com 13px de respiro abaixo das barras de LED, sem sobreposição.
+- **Card RAM & Drive C:**: Reestruturação vertical com alinhamento em `X = 392` e linha divisória, sanando a colisão com o rótulo "DRIVE C:".
+- **Card de Horário**: Ampliação do card de tempo (`Y = 3..25`) com 4px de respiro interno, eliminando sobreposição com a borda superior.
+- **Cards CPU e GPU**: Temperaturas posicionadas com 13px de respiro abaixo das barras de LED.
 
 ### [v1.1.0] - 2026-10-21
-- **Eliminação de camada OSD residual**: Remoção dos círculos e textos antigos herdados de modelos legados.
-- **Estabilidade USB**: Correção de buffer no firmware de 3.5", evitando estouro de memória e desconexões do dispositivo.
-- **Ajuste de VRAM**: Correção da sobreposição do indicador de unidade.
+- **Eliminação de OSD Legado**: Limpeza total da camada residual `osdImg` de círculos herdados.
+- **Estabilidade do Firmware USB**: Resolução definitiva do travamento de watchdog e desconexões de porta.
 
 ### [v1.0.0] - 2026-10-21
-- Lançamento inicial do tema Evangelion Unit-01 Cyberpunk com suporte a orientações Landscape e Portrait.
+- Release inicial dos temas Evangelion Unit-01 para display 3.5" (Landscape e Portrait).
+
+---
+
+## <img src="./assets/icons/briefcase.svg" width="24" height="24" valign="middle" /> Licença
+
+Este projeto é disponibilizado sob a licença [MIT](LICENSE).
