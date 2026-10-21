@@ -1,7 +1,7 @@
 # <p align="center"><img src="./assets/icons/bot.svg" width="42" height="42" valign="middle" /> Evangelion Unit-01 (EVA-01) HUD <img src="./assets/icons/activity.svg" width="42" height="42" valign="middle" /></p>
 
 <p align="center">
-  <strong>Tema de telemetria mecha de alta performance inspirado no Evangelion Unit-01 para telas Turing Smart Screen de 3.5 polegadas.</strong>
+  <strong>High-performance mecha telemetry theme inspired by Evangelion Unit-01 for 3.5-inch Turing Smart Screen displays.</strong>
 </p>
 
 <p align="center">
@@ -12,176 +12,178 @@
   <img src="https://img.shields.io/badge/Python-3.10%2B%20%7C%20Pillow-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
   <img src="https://img.shields.io/badge/PowerShell-.NET%20Reflection-5391FE?style=for-the-badge&logo=powershell&logoColor=white" alt="PowerShell" />
   <img src="https://img.shields.io/badge/Version-v1.3.1-FFAA00?style=for-the-badge" alt="v1.3.1" />
-  <img src="https://img.shields.io/badge/License-MIT-brightgreen?style=for-the-badge" alt="MIT License" />
+  <img src="https://img.shields.io/badge/License-GPLv3-blue?style=for-the-badge&logo=gnu&logoColor=white" alt="GPL-3.0 License" />
 </p>
 
 ---
 
-## <img src="./assets/icons/explore.svg" width="24" height="24" valign="middle" /> Sumário
+## <img src="./assets/icons/explore.svg" width="24" height="24" valign="middle" /> Table of Contents
 
-- [Visão Geral](#-visão-geral)
-- [Demonstração Visual](#-demonstração-visual)
-- [Mapeamento de Telemetria](#-mapeamento-de-telemetria)
-- [Estrutura do Repositório](#-estrutura-do-repositório)
-- [Como Compilar os Arquivos](#-como-compilar-os-arquivos)
-- [Como Instalar e Ativar no Display](#-como-instalar-e-ativar-no-display)
-- [Links Úteis e Downloads](#-links-úteis-e-downloads)
-- [Histórico de Versões](#-histórico-de-versões)
-- [Licença](#-licença)
-
----
-
-## <img src="./assets/icons/explore.svg" width="24" height="24" valign="middle" /> Visão Geral
-
-Este projeto disponibiliza um tema de monitoramento de hardware em tempo real para o display secundário USB **Turing Smart Screen de 3.5 polegadas** (resoluções nativas de **480×320** em modo horizontal e **320×480** em modo vertical).
-
-O design é baseado na estética tática dos cockpits e da interface **MAGI System da NERV**, utilizando a paleta oficial do **Evangelion Unit-01 (EVA-01)**:
-- **Roxo Mecha Profundo (`#8C28DC` / `#2E0854`)**: Molduras chanfradas, trilhos e cantoneiras estruturais.
-- **Verde Neon Fluorescente (`#00FF66` / `#39FF14`)**: Destaque das taxas de clock, cargas de uso, download e status de sincronização (`SYNC: 100%`).
-- **Laranja/Âmbar NERV Alert (`#FFAA00`)**: Temperaturas críticas, aviso de emergência e uso do Drive C:.
-- **Textura Carbon Hex**: Fundo escuro fosco de alto contraste que elimina reflexos e destaca o holograma aramado central do EVA-01.
+- [Overview](#-overview)
+- [Visual Demonstration](#-visual-demonstration)
+- [Telemetry Mapping](#-telemetry-mapping)
+- [Repository Structure](#-repository-structure)
+- [How to Compile the Files](#-how-to-compile-the-files)
+- [How to Install and Activate on the Display](#-how-to-install-and-activate-on-the-display)
+- [Useful Links & Downloads](#-useful-links--downloads)
+- [Version History](#-version-history)
+- [License](#-license)
 
 ---
 
-## <img src="./assets/icons/target.svg" width="24" height="24" valign="middle" /> Demonstração Visual
+## <img src="./assets/icons/explore.svg" width="24" height="24" valign="middle" /> Overview
 
-### Modo Horizontal (Landscape — 480 × 320 px)
-> *Ideal para suporte de mesa padrão horizontal.*
+This project provides a real-time hardware telemetry monitoring theme for the secondary USB display **Turing Smart Screen 3.5-inch** (native resolutions: **480×320** in horizontal mode and **320×480** in vertical mode).
+
+The layout is inspired by the tactical cockpit aesthetics and interface of **NERV's MAGI System**, featuring the official color palette of the **Evangelion Unit-01 (EVA-01)**:
+- **Deep Mecha Purple (`#8C28DC` / `#2E0854`)**: Chamfered bezels, structural rails, and corner brackets.
+- **Fluorescent Acid Neon Green (`#00FF66` / `#39FF14`)**: Clock speeds, usage loads, download bandwidth, and sync status (`SYNC: 100%`).
+- **NERV Warning Amber (`#FFAA00`)**: Critical temperatures, emergency indicators, and Drive C: storage usage.
+- **Carbon Hex Texture**: High-contrast, anti-reflective matte dark background that eliminates glare and highlights the central wireframe hologram of EVA-01.
+
+---
+
+## <img src="./assets/icons/target.svg" width="24" height="24" valign="middle" /> Visual Demonstration
+
+### Horizontal Mode (Landscape — 480 × 320 px)
+> *Ideal for standard desktop landscape docks and stands.*
 
 ![EVA-01 Landscape Preview](./preview_landscape.png)
 
-### Modo Vertical (Portrait — 320 × 480 px)
-> *Ideal para gabinetes ou suportes verticais.*
+### Vertical Mode (Portrait — 320 × 480 px)
+> *Ideal for vertical PC chassis mounts or upright stands.*
 
 ![EVA-01 Portrait Preview](./preview_portrait.png)
 
 ---
 
-## <img src="./assets/icons/activity.svg" width="24" height="24" valign="middle" /> Mapeamento de Telemetria
+## <img src="./assets/icons/activity.svg" width="24" height="24" valign="middle" /> Telemetry Mapping
 
-Todas as métricas são atualizadas em tempo real pelo software sem sobreposição de textos ou barras:
+All metrics are updated in real time by the software without text collisions or bar overlaps:
 
-| Módulo | Métrica | Identificador no Software | Formato & Cor |
+| Module | Metric | Software Identifier | Format & Styling |
 | :--- | :--- | :--- | :--- |
-| **CPU** | Carga de Uso (%) | `CpuLoad` | Dígitos em Verde Neon (`#39FF14`) + Barra Dinâmica LED HUD |
-| **CPU** | Temperatura (°C) | `CpuTemp` | Dígitos em Âmbar NERV Alert (`#FFAA00`) com 13px de respiro |
-| **CPU** | Frequência de Clock (GHz) | `CpuFreq` | Dígitos em Verde Neon |
-| **GPU** | Carga de Uso (%) | `GpuLoad` | Dígitos em Verde Neon + Barra Dinâmica LED HUD |
-| **GPU** | Temperatura (°C) | `GpuTemp` | Dígitos em Âmbar NERV Alert com 13px de respiro |
-| **GPU** | Memória VRAM (MB) | `GpuRam` | Dígitos em Verde Neon com sufixo nativo |
-| **RAM** | Uso da Memória (%) | `RamLoad` | Dígitos em Verde Neon (coluna `X = 392`) + Barra Dinâmica |
-| **Drive C:** | Uso do Armazenamento (%) | `HDDLoad` | Dígitos em Âmbar NERV (coluna `X = 392`) + Barra Dinâmica |
-| **Rede** | Taxa de Download (MB/s) | `InternetDown` | Dígitos em Verde Neon com indicador `DL [v]` |
-| **Rede** | Taxa de Upload (MB/s) | `InternetUp` | Dígitos em Roxo Elétrico (`#C878FF`) com indicador `UL [^]` |
-| **Relógio** | Horário Atual | `Time` | Sincronizado no topo direito com 4px de margem interna |
+| **CPU** | Usage Load (%) | `CpuLoad` | Neon Green digits (`#39FF14`) + Dynamic HUD LED bar |
+| **CPU** | Temperature (°C) | `CpuTemp` | Amber NERV Alert digits (`#FFAA00`) with 13px breathing room |
+| **CPU** | Clock Frequency (GHz) | `CpuFreq` | Neon Green digits |
+| **GPU** | Usage Load (%) | `GpuLoad` | Neon Green digits + Dynamic HUD LED bar |
+| **GPU** | Temperature (°C) | `GpuTemp` | Amber NERV Alert digits with 13px breathing room |
+| **GPU** | VRAM Memory (MB) | `GpuRam` | Neon Green digits with native suffix |
+| **RAM** | Memory Usage (%) | `RamLoad` | Neon Green digits (`X = 392` column) + Dynamic HUD bar |
+| **Drive C:** | Storage Usage (%) | `HDDLoad` | Amber NERV digits (`X = 392` column) + Dynamic HUD bar |
+| **Network** | Download Speed (MB/s) | `InternetDown` | Neon Green digits with `DL [v]` indicator |
+| **Network** | Upload Speed (MB/s) | `InternetUp` | Electric Purple digits (`#C878FF`) with `UL [^]` indicator |
+| **Clock** | Current Time | `Time` | Synchronized top-right with 4px internal margin |
 
 ---
 
-## <img src="./assets/icons/architecture.svg" width="24" height="24" valign="middle" /> Estrutura do Repositório
+## <img src="./assets/icons/architecture.svg" width="24" height="24" valign="middle" /> Repository Structure
 
 ```text
 tss/
 ├── assets/
-│   ├── icons/                          # Ícones SVG do projeto
-│   ├── eva_center_crop.png             # Holograma do EVA-01 (Horizontal)
-│   └── eva_portrait_crop.png           # Holograma do EVA-01 (Vertical)
+│   ├── icons/                          # SVG icons for project documentation
+│   ├── eva_center_crop.png             # EVA-01 Hologram (Landscape)
+│   └── eva_portrait_crop.png           # EVA-01 Hologram (Portrait)
 │
-├── build_theme_images.py               # Gerador procedural de backgrounds HUD (Pillow)
-├── build_theme_data.ps1                # Compilador binário de temas (.data via .NET Reflection)
-├── eva_01_landscape.png                # Fundo gerado 480x320
-├── eva_01_portrait.png                 # Fundo gerado 320x480
-├── preview_landscape.png               # Imagem de demonstração horizontal
-├── preview_portrait.png                # Imagem de demonstração vertical
-├── A EVA 01 Evangelion Land.data       # Pacote binário do tema horizontal
-├── A EVA 01 Evangelion Port.data       # Pacote binário do tema vertical
-├── .gitignore                          # Regras de exclusão do Git
-└── README.md                           # Documentação oficial
+├── build_theme_images.py               # Procedural HUD background generator (Pillow)
+├── build_theme_data.ps1                # Binary theme compiler (.data via .NET Reflection)
+├── eva_01_landscape.png                # Generated background 480x320
+├── eva_01_portrait.png                 # Generated background 320x480
+├── preview_landscape.png               # Horizontal demonstration preview
+├── preview_portrait.png                # Vertical demonstration preview
+├── A EVA 01 Evangelion Land.data       # Horizontal binary theme package
+├── A EVA 01 Evangelion Port.data       # Vertical binary theme package
+├── .gitignore                          # Git ignore rules
+├── LICENSE                             # GNU General Public License v3.0 (GPL-3.0)
+└── README.md                           # Official project documentation
 ```
 
 ---
 
-## <img src="./assets/icons/tools.svg" width="24" height="24" valign="middle" /> Como Compilar os Arquivos
+## <img src="./assets/icons/tools.svg" width="24" height="24" valign="middle" /> How to Compile the Files
 
-O pipeline de compilação é composto por duas etapas: geração das imagens de alta definição e serialização binária compatível com a arquitetura `.NET` do Turing Smart Screen.
+The compilation pipeline consists of two stages: procedural high-definition visual generation and binary serialization compatible with the `.NET` architecture of Turing Smart Screen.
 
-### Pré-requisitos:
-- **Python 3.10+** com biblioteca Pillow:
+### Prerequisites:
+- **Python 3.10+** with the Pillow library:
   ```bash
   pip install pillow
   ```
-- **PowerShell 5.1 ou 7+** (com permissão de execução de scripts).
+- **PowerShell 5.1 or 7+** (with script execution permissions).
 
-### Etapa 1: Gerar as Imagens de Fundo (PNG)
-Execute o script Python para desenhar os painéis, grades hexagonais, molduras mecha e compor os hologramas:
+### Step 1: Generate Background Images (PNG)
+Run the Python script to draw the HUD panels, hexagonal grids, mecha frames, and composite the holograms:
 ```bash
 python build_theme_images.py
 ```
-*Saída:* Gera `eva_01_landscape.png` (480x320) e `eva_01_portrait.png` (320x480).
+*Output:* Generates `eva_01_landscape.png` (480x320) and `eva_01_portrait.png` (320x480).
 
-### Etapa 2: Compilar os Temas Binários (`.data`)
-Execute o script PowerShell para serializar os temas com `BinaryFormatter`, injetar as fontes, cores neon, coordenadas absolutas e camadas OSD transparentes:
+### Step 2: Compile Binary Theme Files (`.data`)
+Run the PowerShell script to serialize the themes with `BinaryFormatter`, inject font tables, neon colors, absolute coordinates, and transparent OSD layers:
 ```powershell
 powershell -ExecutionPolicy Bypass -File build_theme_data.ps1
 ```
-*Saída:* Compila `A EVA 01 Evangelion Land.data` e `A EVA 01 Evangelion Port.data` e os transfere automaticamente para a pasta do seu software.
+*Output:* Compiles `A EVA 01 Evangelion Land.data` and `A EVA 01 Evangelion Port.data`, automatically deploying them into your UsbMonitor directory.
 
 ---
 
-## <img src="./assets/icons/backend.svg" width="24" height="24" valign="middle" /> Como Instalar e Ativar no Display
+## <img src="./assets/icons/backend.svg" width="24" height="24" valign="middle" /> How to Install and Activate on the Display
 
-Se você desejar copiar manualmente para outra máquina ou diretório:
+If you want to manually deploy to another machine or directory:
 
-1. **Copie os arquivos de tema para a pasta `config\`:**
-   - Copie `A EVA 01 Evangelion Land.data` e `A EVA 01 Evangelion Port.data` para `C:\...\35inchENG\config\`
-2. **Copie as imagens de fundo para a pasta `3.5\`:**
-   - Copie `eva_01_landscape.png` e `eva_01_portrait.png` para `C:\...\35inchENG\3.5\`
-3. **Ative na interface do UsbMonitor:**
-   - Abra o **UsbMonitor.exe**.
-   - No menu suspenso **Theme**, selecione:
-     - **`A EVA 01 Evangelion Land`** (para exibição horizontal)
-     - ou **`A EVA 01 Evangelion Port`** (para exibição vertical)
-   - Clique no botão **Run**. O visor atualizará imediatamente.
+1. **Copy the theme files into the `config\` folder:**
+   - Copy `A EVA 01 Evangelion Land.data` and `A EVA 01 Evangelion Port.data` to `C:\...\35inchENG\config\`
+2. **Copy the background images into the `3.5\` folder:**
+   - Copy `eva_01_landscape.png` and `eva_01_portrait.png` to `C:\...\35inchENG\3.5\`
+3. **Activate in the UsbMonitor interface:**
+   - Open **UsbMonitor.exe**.
+   - In the **Theme** dropdown, select:
+     - **`A EVA 01 Evangelion Land`** (for horizontal display)
+     - or **`A EVA 01 Evangelion Port`** (for vertical display)
+   - Click the **Run** button. The screen will update immediately.
 
 ---
 
-## <img src="./assets/icons/connect.svg" width="24" height="24" valign="middle" /> Links Úteis e Downloads
+## <img src="./assets/icons/connect.svg" width="24" height="24" valign="middle" /> Useful Links & Downloads
 
-Abaixo estão os links oficiais e recursos comunitários para download do aplicativo de gerenciamento do **Turing Smart Screen 3.5"** (`UsbMonitor.exe`), drivers e firmwares:
+Official downloads and community resources for the **Turing Smart Screen 3.5"** management application (`UsbMonitor.exe`), drivers, and firmwares:
 
-| Recurso | Descrição | Link de Acesso |
+| Resource | Description | Access Link |
 | :--- | :--- | :--- |
-| **Download do App Turing 3.5" (Direto)** | Página de download direto dos pacotes oficiais para display 3.5" (`35inchENG.rar` / `UsbMonitor.exe`) | [Download Direto Turing 3.5 App](https://www.turzx.com/2023/03/02/%E7%9B%B4%E9%93%BE%E4%B8%8B%E8%BD%BDdirectdownload/) |
-| **Portal Oficial do Fabricante (Turzx)** | Site oficial da Turzx com documentações, lançamentos e tutoriais | [https://www.turzx.com/](https://www.turzx.com/) |
-| **Central de Drivers & Utilitários Turzx** | Repositório geral de drivers, temas e atualizações de firmware | [Turzx Software Center](https://www.turzx.com/2021/11/02/download/) |
-| **Turing Smart Screen Python (Open Source)** | Driver e biblioteca de código aberto mantida pela comunidade para telas Turing | [GitHub - mathoudebine/turing-smart-screen-python](https://github.com/mathoudebine/turing-smart-screen-python) |
+| **Turing 3.5" App Direct Download** | Official direct download page for 3.5" packages (`35inchENG.rar` / `UsbMonitor.exe`) | [Turzx 3.5" Direct Download](https://www.turzx.com/2023/03/02/%E7%9B%B4%E9%93%BE%E4%B8%8B%E8%BD%BDdirectdownload/) |
+| **Official Manufacturer Portal (Turzx)** | Official Turzx website with documentation, updates, and user guides | [https://www.turzx.com/](https://www.turzx.com/) |
+| **Turzx Software & Drivers Center** | Central driver repository, default themes, and firmware releases | [Turzx Software Center](https://www.turzx.com/2021/11/02/download/) |
+| **Turing Smart Screen Python (Open Source)** | Community-driven open-source Python driver and library for Turing displays | [GitHub - mathoudebine/turing-smart-screen-python](https://github.com/mathoudebine/turing-smart-screen-python) |
 
 ---
 
-## <img src="./assets/icons/code.svg" width="24" height="24" valign="middle" /> Histórico de Versões
+## <img src="./assets/icons/code.svg" width="24" height="24" valign="middle" /> Version History
 
 ### [v1.3.1] - 2026-10-21
-- **Correção da Altura e Bounding Box do Drive C: (HDDLoad)**: Definição explícita de `W=14, H=18, interval=14` para fontes tamanho 24, corrigindo a renderização cortada dos dígitos de porcentagem do Drive C: no display físico.
-- **Padronização Global de FontConfig**: Configuração automática e rigorosa de `W`, `H`, `offsetX`, `offsetY` e `interval` para todos os tamanhos de fonte (18, 24, 30, 40) tanto no tema Horizontal quanto Vertical.
+- **Drive C: (HDDLoad) Bounding Box & Height Fix**: Enforced explicit `W=14, H=18, interval=14` font metrics for size 24 font, fixing cropped percentage digits on the physical display.
+- **Global FontConfig Standardization**: Automated strict configuration of `W`, `H`, `offsetX`, `offsetY`, and `interval` for all font sizes (18, 24, 30, 40) in both Landscape and Portrait themes.
+- **GPL-3.0 License & English Localization**: Switched project license to GNU GPL v3.0 and converted documentation to English.
 
 ### [v1.3.0] - 2026-10-21
-- **Padronização Naming Evangelion**: Foco 100% exclusivo no tema Evangelion Unit-01 / NERV MAGI.
-- **Novos Ícones no README**: Incorporação da coleção de ícones SVG estilizados e badges do ecossistema.
-- **Guia de Compilação e Links**: Documentação técnica de build procedural via Python/PowerShell e links para download do software oficial.
+- **Evangelion Naming Standardization**: 100% exclusive focus on Evangelion Unit-01 / NERV MAGI theme.
+- **New README SVG Icons**: Integrated clean SVG icons for section titles and ecosystem badges.
+- **Compilation Guide & Download Links**: Added comprehensive build pipeline documentation and direct links to official Turzx software.
 
 ### [v1.2.0] - 2026-10-21
-- **Card RAM & Drive C:**: Reestruturação vertical com alinhamento em `X = 392` e linha divisória, sanando a colisão com o rótulo "DRIVE C:".
-- **Card de Horário**: Ampliação do card de tempo (`Y = 3..25`) com 4px de respiro interno, eliminando sobreposição com a borda superior.
-- **Cards CPU e GPU**: Temperaturas posicionadas com 13px de respiro abaixo das barras de LED.
+- **RAM & Drive C: Card**: Restructured layout vertically aligned at `X = 392` with divider line, resolving label collisions.
+- **Time Card**: Expanded time card (`Y = 3..25`) with 4px internal margin, preventing top border overlap.
+- **CPU & GPU Cards**: Realigned temperatures with 13px spacing below the LED bars.
 
 ### [v1.1.0] - 2026-10-21
-- **Eliminação de OSD Legado**: Limpeza total da camada residual `osdImg` de círculos herdados.
-- **Estabilidade do Firmware USB**: Resolução definitiva do travamento de watchdog e desconexões de porta.
+- **Legacy OSD Cleanup**: Removed residual `osdImg` gauge graphics and overlay layers.
+- **USB Firmware Stability**: Resolved watchdog timer resets and disconnection issues over USB HID.
 
 ### [v1.0.0] - 2026-10-21
-- Release inicial dos temas Evangelion Unit-01 para display 3.5" (Landscape e Portrait).
+- Initial release of the Evangelion Unit-01 themes for 3.5" Turing Smart Screen displays (Landscape & Portrait).
 
 ---
 
-## <img src="./assets/icons/briefcase.svg" width="24" height="24" valign="middle" /> Licença
+## <img src="./assets/icons/briefcase.svg" width="24" height="24" valign="middle" /> License
 
-Este projeto é disponibilizado sob a licença [MIT](LICENSE).
+This project is licensed under the [GNU General Public License v3.0 (GPL-3.0)](LICENSE).
